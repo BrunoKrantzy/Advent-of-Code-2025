@@ -2,6 +2,7 @@ import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.util.*
+import kotlin.math.abs
 import kotlin.math.absoluteValue
 
 private fun readChars() = readLn().toCharArray()
@@ -137,6 +138,30 @@ fun possiblePath(n: Int, m: Int, grid: Array<IntArray>): Int {
 
     // Return the distance of the destination cell from the source
     return dis[n - 1][m - 1]
+}
+
+
+fun transPose(pose:Int, vitesse:Int, size:Int) : Int {
+    var pos = pose
+    val v = (vitesse % size)
+
+    if (v > 0) {
+        var res = pos + v
+        if (res > size-1) {
+            res -= size
+        }
+        pos = res
+    }
+    else {
+        val res = pose + v
+        if (res >= 0) {
+            pos = res
+        }
+        else {
+            pos = size - abs(res)
+        }
+    }
+    return pos
 }
 
 
