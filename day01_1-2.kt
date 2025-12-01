@@ -26,11 +26,11 @@ fun main() {
         else
             dialPos = transPose(dialPos, nbDep, sizeDial)
 
-        if (dialPos == 0) {
+        if (dialPos == 0)
             repP1++
-        }
     }
 
     println("Prob_1 : $repP1")
     println("Prob_2 : $repP2")
 }
+
