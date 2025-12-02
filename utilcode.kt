@@ -60,18 +60,14 @@ fun String.splitLongs(): List<Long> =
 
 
 // BFS grid
-fun possiblePath(n: Int, m: Int, grid: Array<IntArray>): Int {
-    // Check if the source or destination cell is blocked
-    if (grid[0][0] == 1 || grid[n - 1][m - 1] == 1) {
-        // Return -1 to indicate no path
-        return -1
-    }
+fun calculThePath(n: Int, m: Int, grid: Array<IntArray>, startPos: Pair<Int,Int>, endPos: Pair<Int,Int>): Int {
 
     // Create a queue to store the cells to explore
     val q: Queue<IntArray> = LinkedList()
 
     // Add the source cell to the queue and mark its distance as 0
-    q.add(intArrayOf(0, 0))
+    //q.add(intArrayOf(0, 0))
+    q.add(intArrayOf(startPos.first, startPos.second))
 
     // Define two arrays to represent the four directions of movement
     val dx = intArrayOf(-1, 0, 1, 0)
@@ -85,7 +81,7 @@ fun possiblePath(n: Int, m: Int, grid: Array<IntArray>): Int {
     }
 
     // Set the distance of the source cell as 0
-    dis[0][0] = 0
+    dis[startPos.first][startPos.second] = 0
 
     // Loop until the queue is empty or the destination is reached
     while (!q.isEmpty()) {
@@ -113,31 +109,13 @@ fun possiblePath(n: Int, m: Int, grid: Array<IntArray>): Int {
                     // further exploration
                     q.add(intArrayOf(xx, yy))
                 }
-
-                // Check if the neighboring cell is special
-                if (grid[xx][yy] == 2) {
-                    // Loop through the four directions of movement again
-                    for (j in 0..3) {
-                        // Calculate the coordinates of the adjacent cell
-                        val xxx = xx + dx[j]
-                        val yyy = yy + dy[j]
-
-                        // Check if the adjacent cell is inside the grid
-                        if (xxx >= 0 && xxx < n && yyy >= 0 && yyy < m) {
-                            // Check if the adjacent cell is blocked
-                            if (grid[xxx][yyy] == 1) {
-                                // Change the adjacent cell to free
-                                grid[xxx][yyy] = 0
-                            }
-                        }
-                    }
-                }
             }
         }
     }
 
     // Return the distance of the destination cell from the source
-    return dis[n - 1][m - 1]
+    //return dis[n - 1][m - 1]
+    return dis[endPos.first][endPos.second]
 }
 
 
