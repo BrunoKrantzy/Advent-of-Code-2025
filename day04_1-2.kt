@@ -45,10 +45,7 @@ fun main() {
     }
     println("Prob_1 : $rep1")
 
-
-    var lstToRemove = mutableListOf<Pair<Int, Int>>()
     var temoin = true
-
     while (temoin) {
         temoin = false
         for (l in 0 until nbL) {
@@ -59,16 +56,11 @@ fun main() {
                     if (nbRolls < 4) {
                         temoin = true
                         rep2++
-                        lstToRemove.add(Pair(l, c))
+                        tabGame[l][c] = '.'
                     }
                 }
             }
         }
-
-        lstToRemove.forEach {
-            tabGame[it.first][it.second] = '+'
-        }
-        lstToRemove.clear()
     }
     println("Prob_2 : $rep2")
 }
