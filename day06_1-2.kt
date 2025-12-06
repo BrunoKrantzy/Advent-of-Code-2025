@@ -84,16 +84,17 @@ fun main() {
             lstNombres.add(nombre.toString().toLong())
         }
 
+        var vNombre = 0L
         val ope = lstOperands[numOpe]
-        if (ope == '+')
-            rep2 += lstNombres.sum()
-        else {
-            var vNombre = lstNombres[0]
-            for (n in 1 until lstNombres.size) {
-                vNombre *= lstNombres[n]
+        when (ope) {
+            '+' -> {
+                vNombre = lstNombres.fold(0) { a, b -> a + b }
             }
-            rep2 += vNombre
+            '*' -> {
+                vNombre = lstNombres.fold(1L) { a, b -> a * b }
+            }
         }
+        rep2 += vNombre
     }
     println("Prob_2 : $rep2")
 }
